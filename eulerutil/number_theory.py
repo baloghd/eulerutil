@@ -45,6 +45,18 @@ def sumdigits(n: int) -> int:
 def divides(a: int, b: int) -> bool:
     return b % a == 0
 
+def Fibonacci(n: int) -> int:
+    lookup = {1: 1, 2: 1}
+    def fib(n):
+        if n <= 2:
+            return 1
+        if n in lookup:
+            return lookup[n]
+        else:
+            lookup[n] = fib(n-1) + fib(n-2)
+            return lookup[n]
+    return fib(n)
+
 def Collatz_sequence(n: int) -> List[int]:
     seq = []
     t = n
@@ -56,3 +68,4 @@ def Collatz_sequence(n: int) -> List[int]:
             n = 3*n + 1
     seq.append(1)
     return dict(zip(seq, [i for i in range(len(seq) - 1, 0, -1)]))
+
