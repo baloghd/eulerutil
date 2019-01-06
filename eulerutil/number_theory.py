@@ -1,4 +1,5 @@
 from typing import Tuple, Set, List
+import math
 
 def even(n: int) -> bool:
     return n % 2 == 0
@@ -28,13 +29,16 @@ def numdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
         return nd, dl
     return nd
 
-def numdigits(n: int) -> int:
-    d = 0
+def digits(n: int) -> List[int]:
+    d = []
     while n >= 1:
-        d += 1
-        n /= 10
+        d.append(n % 10)
+        n //= 10
     return d
 
+def numdigits(n: int) -> int:
+    return math.floor(math.log10(n)) + 1
+    
 def sumdigits(n: int) -> int:
     d = 0
     while n >= 1:
@@ -44,6 +48,12 @@ def sumdigits(n: int) -> int:
 
 def divides(a: int, b: int) -> bool:
     return b % a == 0
+
+def is_square(n: int) -> bool:
+    if (n < 0):
+        return False
+    root = math.sqrt(n) + 0.5
+    return root * root == n
 
 def Fibonacci(n: int) -> int:
     lookup = {1: 1, 2: 1}
