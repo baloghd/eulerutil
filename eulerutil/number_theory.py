@@ -1,5 +1,7 @@
-from typing import Tuple, Set, List
+from typing import Tuple, Set, List, Iterable
 import math
+
+from eulerutil.prime import *
 
 def even(n: int) -> bool:
     return n % 2 == 0
@@ -13,21 +15,6 @@ def gcd(a: int, b: int) -> int:
         b = a % b
         a = t
     return a
-
-def numdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
-    i = 1
-    nd = 1
-    if div_list:
-        dl = {n}
-    while 2*i <= n:
-        if n % i == 0:
-            nd += 1
-            if div_list:
-                dl.add(i)
-        i += 1
-    if div_list:
-        return nd, dl
-    return nd
 
 def digits(n: int) -> List[int]:
     d = []
@@ -78,4 +65,52 @@ def Collatz_sequence(n: int) -> List[int]:
             n = 3*n + 1
     seq.append(1)
     return dict(zip(seq, [i for i in range(len(seq) - 1, 0, -1)]))
+
+def sigma_0(n: int) -> int:
+    pf = prime_factors(n)
+    s = 1
+    for f in pf:
+        s *= (pf[f] + 1)
+    return s
+
+def sigma_1(n: int) -> int:
+    pf = prime_factors(n)
+    s = 1
+    for f in pf:
+        s *= (f**(pf[f] + 1) - 1)/(f - 1)
+    return s
+
+def numdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
+    i = 1
+    nd = 1
+    if div_list:
+        dl = {n}
+    while 2*i <= n:
+        if n % i == 0:
+            nd += 1
+            if div_list:
+                dl.add(i)
+        i += 1
+    if div_list:
+        return nd, dl
+    return nd
+
+def sumdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
+    i = 1
+    nd = 1
+    if div_list:
+        dl = {n}
+    while i*i <= n:
+        if n % i == 0:
+            nd += i
+            if div_list:
+                dl.add(i)
+        i += 1
+    if div_list:
+        return nd, dl
+    return nd
+
+
+
+
 
