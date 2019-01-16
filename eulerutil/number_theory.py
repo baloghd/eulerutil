@@ -3,6 +3,12 @@ import math
 
 from eulerutil.prime import *
 
+#EPS = 0.0000000000001
+
+def whole(n: int or float) -> bool:
+    #return abs(n - int(n)) < EPS
+    return int(n) == n
+
 def even(n: int) -> bool:
     return n % 2 == 0
 
@@ -109,8 +115,5 @@ def sumdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
     if div_list:
         return nd, dl
     return nd
-
-
-
 
 
