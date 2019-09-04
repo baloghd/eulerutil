@@ -4,6 +4,8 @@ from collections import Counter
 #from eulerutil.number_theory import divides
 
 def is_prime(n: int) -> bool:
+    if n < 2:
+        return False
     for i in range(2, n):
         if i*i > n:
             break
@@ -29,6 +31,21 @@ def sieve(limit: int) -> List[int]:
     tofilter = [i if table[i] == True else None for i in range(2, limit)]
     
     return list(filter(lambda x: x is not None, tofilter))
+
+
+class PrimeIterator:
+    def __init__(self, start = 2):
+        self.at = start
+
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        self.at += 1
+        while not is_prime(self.at):
+            self.at += 1
+        return self.at
+
 
 #def prime_factors(n: int) -> Counter:
     #p = sieve(n)

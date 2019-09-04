@@ -42,6 +42,9 @@ def sumdigits(n: int) -> int:
 def divides(a: int, b: int) -> bool:
     return b % a == 0
 
+def frac(n: float) -> float:
+    return n - int(n)
+
 def is_square(n: int) -> bool:
     if (n < 0):
         return False
@@ -77,14 +80,14 @@ def sigma_0(n: int) -> int:
     s = 1
     for f in pf:
         s *= (pf[f] + 1)
-    return s
+    return int(s)
 
 def sigma_1(n: int) -> int:
     pf = prime_factors(n)
     s = 1
     for f in pf:
         s *= (f**(pf[f] + 1) - 1)/(f - 1)
-    return s
+    return int(s)
 
 def numdivisors(n: int, div_list = False) -> int or Tuple[int, Set]:
     i = 1
